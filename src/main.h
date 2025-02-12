@@ -4,7 +4,7 @@
 
 #define mapSize 10
 
-const u32 SCREEN_HEIGHT = 560;
-const u32 SCREEN_WIDTH = 640 + SCREEN_HEIGHT;
+const f32 SCREEN_HEIGHT = 1000;
+const f32 SCREEN_WIDTH = 1000 + SCREEN_HEIGHT;
 
 #endif

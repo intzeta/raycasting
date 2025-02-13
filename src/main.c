@@ -63,7 +63,9 @@ void drawRect(SDL_Renderer *renderer, SDL_Rect *box, Uint8 r, Uint8 g, Uint8 b, 
 
 void drawMap(camera cam){
 
-  // Map will be on the most left pixel area
+  // Declaring color struct
+  // TODO: Change it to bitwise.
+  // :)
 
   color rgba;
 
@@ -97,6 +99,26 @@ void drawMap(camera cam){
   };
   SDL_RenderFillRect(renderer, &playArea);
   SDL_RenderDrawRect(renderer, &playArea);
+
+  /*
+  SDL_Rect player = (SDL_Rect){
+    cam.pos.y * 100 - cam.radius,
+    cam.pos.x * 100 - cam.radius,
+    cam.radius,
+    cam.radius,
+  };
+
+  drawRect(renderer, &player, 0x00, 0x00, 0x00, 0xFF);
+  */
+  SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
+  SDL_RenderDrawLine(renderer,
+    cam.pos.y * 100 - cam.radius / 2,
+    cam.pos.x * 100 - cam.radius / 2,
+    cam.pos.y * 100 - cam.radius / 2 + cam.dir.y * 25,
+    cam.pos.x * 100 - cam.radius / 2 + cam.dir.x * 25
+  );
+
+  //printf("%f,   %f\n", cam.dir.x, cam.dir.y);
 
   for(f32 x = 0; x < SCREEN_WIDTH - SCREEN_HEIGHT; x++){
     f32 camX = 2 * x / (SCREEN_WIDTH - SCREEN_HEIGHT) - 1.0f; // -1, ... , 0, ... , -1
@@ -178,18 +200,17 @@ void drawMap(camera cam){
       rgba.g /= 2;
       rgba.b /= 2;
     }
+
+    SDL_RenderDrawLine(renderer,
+      cam.pos.y * 100 - cam.radius / 2,
+      cam.pos.x * 100 - cam.radius / 2,
+      cam.pos.y * 100 + rayDir.y * perpWallDist * 100,
+      cam.pos.x * 100 + rayDir.x * perpWallDist * 100
+    );
+
     SDL_SetRenderDrawColor(renderer, rgba.r, rgba.g, rgba.b, rgba.a);
     SDL_RenderDrawLine(renderer, x + SCREEN_HEIGHT, drawStart, x + SCREEN_HEIGHT, drawEnd);
   }
-
-
-  SDL_Rect player;
-    player.x = cam.pos.y * 100 - cam.radius,
-    player.y = cam.pos.x * 100 - cam.radius,
-    player.w = cam.radius,
-    player.h = cam.radius,
-
-  drawRect(renderer, &player, 0x00, 0x00, 0x00, 0xFF);
 }
 
 // -1 - Rotation left
@@ -212,7 +233,7 @@ int main(int argc, char* args[]){
     bool quit = 0;
 
     camera cam = {
-      {2, 2},
+      {5, 5},
       {-1, 0},
       {0, 0.66},
       5,

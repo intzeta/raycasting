@@ -21,4 +21,13 @@ typedef struct {
   f32 y;
 } vec2;
 
+typedef struct {
+  u32 x;
+  u32 y;
+} vec2i;
+
+typedef struct {
+  u32 x;
+  u32 y;
+} vec2u;
 #endif

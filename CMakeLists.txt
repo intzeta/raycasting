@@ -4,11 +4,10 @@ project(raycasting VERSION 1.0)
 set(CMAKE_C_COMPILER "clang")
 
 find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
 
 add_executable(main src/main.c)
 
-target_link_libraries(main SDL2 SDL2_image)
+target_link_libraries(main SDL2 m)
 target_compile_options(main PRIVATE
     -Wall
     -std=c2x

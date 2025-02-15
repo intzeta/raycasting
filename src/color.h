@@ -8,4 +8,5 @@ typedef struct {
   u8 b;
   u8 a;
 } color;
+
 #endif

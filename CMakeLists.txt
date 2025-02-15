@@ -5,7 +5,7 @@ set(CMAKE_C_COMPILER "clang")
 
 find_package(SDL2 REQUIRED)
 
-add_executable(main src/main.c)
+add_executable(main src/main.c src/render.c src/camera.c src/window.c)
 
 target_link_libraries(main SDL2 m)
 target_compile_options(main PRIVATE

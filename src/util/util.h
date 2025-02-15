@@ -5,9 +5,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+//#include <limits.h>
 #include <SDL2/SDL.h>
 
 #include "types.h"
+#include "main.h"
 
 #endif
